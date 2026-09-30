@@ -23,9 +23,10 @@ class BukuModel:
             val = (judul, penulis, tahun_terbit)
             cursor.execute(query, val)
             self.conn.commit()
+            last_id = cursor.lastrowid
             cursor.close()
-            return True
-        return False
+            return last_id
+        return None
 
     def update_buku(self, id_buku, judul, penulis, tahun_terbit):
         if self.conn:
